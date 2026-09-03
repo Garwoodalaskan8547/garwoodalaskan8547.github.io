@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bryan Debnam — Systems Architect / AI Platform Engineer</title>
+<meta name="description" content="Portfolio: AI governance and MLOps lifecycle, agentic AI platforms, AI security triage, and enterprise infrastructure architecture.">
+<style>
+:root {
+  --bg: #ffffff; --fg: #1b1f24; --muted: #5b6570; --accent: #1f4e9c;
+  --rule: #d8dee6; --card: #f6f8fa; --code-bg: #eef1f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1319; --fg: #e6e9ee; --muted: #9aa5b1; --accent: #7aa7ee;
+    --rule: #263040; --card: #161c25; --code-bg: #1b222c;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.62 -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 860px; margin: 0 auto; padding: 48px 22px 80px; }
+h1 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.4px; }
+h1 + p { color: var(--muted); margin: 0 0 6px; font-size: 1.05rem; }
+h2 {
+  font-size: 1.32rem; margin: 44px 0 14px; padding-bottom: 7px;
+  border-bottom: 2px solid var(--accent); color: var(--accent);
+}
+h3 { font-size: 1.06rem; margin: 28px 0 8px; }
+p, li { margin: 8px 0; }
+ul { padding-left: 22px; }
+a { color: var(--accent); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 34px 0; }
+strong { color: var(--fg); }
+em { color: var(--muted); }
+code {
+  background: var(--code-bg); padding: 1px 5px; border-radius: 3px;
+  font: 0.88em/1.4 "SF Mono", Consolas, monospace;
+}
+.tablewrap { overflow-x: auto; margin: 16px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; min-width: 620px; }
+th, td { border: 1px solid var(--rule); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: var(--card); }
+h3 + p + ul, h3 + ul { margin-top: 6px; }
+footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
+         color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 600px) {
+  .wrap { padding: 30px 16px 60px; }
+  h1 { font-size: 1.7rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Bryan Debnam</h1>
+<p><strong>Systems Architect → AI Platform / MLOps Engineer</strong>
+Lewisville, TX · bdebnam@gmail.com · <a href="https://www.linkedin.com/in/bryanhd">linkedin.com/in/bryanhd</a></p>
+<hr />
+<h2>Positioning</h2>
+<p>20+ years in enterprise IT, 3+ at the architecture level — cloud migrations, M&amp;A technology
+integration, and identity modernization across four acquisitions, plus building and leading a
+60+-control SOX/ITGC compliance program.</p>
+<p><strong>At work</strong>, more recently: &ldquo;Script Portal,&rdquo; an internal platform for interchangeable
+agentic-AI backends under one allowlist + output-masking safety model; Playwright RPA agents
+for SOX audit evidence; the org&rsquo;s GitHub Enterprise Copilot rollout.</p>
+<p><strong>Independently</strong> (personal R&D; foundation: Texas McCombs AI/ML post-grad, 2024–2025): a full
+MLOps governance lifecycle (model registry, champion/challenger promotion with rollback,
+automated drift detection, data lineage), an LLM security triage tool, and LLM cost analytics —
+all on a self-hosted, dual-GPU Incus/k3s fleet.</p>
+<p><strong>What&rsquo;s distinctive:</strong> the intersection of SOX/ITGC audit discipline and hands-on AI-platform
+engineering — few people have both.</p>
+<hr />
+<h2>Selected projects</h2>
+<p>Each project is tagged <strong>[Work]</strong> (Inform Diagnostics) or <strong>[Independent R&amp;D]</strong> (personal), and
+scoped: <strong>Production</strong> (in real organizational use), <strong>Reference build</strong> (complete and running,
+single-environment / not scale-tested), <strong>POC</strong> (proves the pattern).</p>
+<h3>1. AI Governance &amp; MLOps Lifecycle — <strong>[Independent R&amp;D]</strong> · <em>Reference build, flagship</em></h3>
+<p>An end-to-end model-governance pipeline for a 7-agent LLM system, applying SOX/ITGC evidentiary
+rigor to AI oversight.</p>
+<ul>
+<li><strong>Model registry &amp; staged promotion</strong> (MLflow) — preflight validation gates, automated
+  rollback, and a silent-no-op safety guard that blocks unvetted model changes from reaching
+  production.</li>
+<li><strong>Champion/challenger A/B gate</strong> — a staged candidate model is evaluated head-to-head against
+  the live champion before any cutover.</li>
+<li><strong>Automated drift detection</strong> — weekly scheduled scanning, parameter-order-insensitive.
+  Caught a live defect in production: an arithmetic self-contradiction in a prompt-scoring agent
+  that was inflating its own output score.</li>
+<li><strong>Data lineage</strong> (Marquez / OpenLineage) across the MLflow ↔ Ollama pipeline — every model
+  version, eval run, and promotion decision is auditable.</li>
+<li><strong>LLM-as-judge evaluation harness</strong> — scores agents on substance (accuracy, completeness, no
+  fabrication) rather than surface grammar; registered judge model; testsets logged as MLflow
+  GenAI datasets. Brought all 7 agents to a validated quality gate.</li>
+<li><strong>AI Gateway</strong> (FastAPI/uvicorn) — unified model-access boundary with a local detect-quality
+  model; GenAI UI wired (Prompts registry for 7 agent system prompts, review queues, label
+  schemas).</li>
+<li><strong>Stack:</strong> MLflow 3.x (Postgres backend, decoupled artifact volume, Vault-sourced secrets,
+  AppRole), Marquez, Ollama, Grafana, Python.</li>
+</ul>
+<h3>2. Provider-Agnostic Agentic AI Platform (&ldquo;Script Portal&rdquo; / Agent Bridge) — <strong>[Work]</strong> · <em>Production</em></h3>
+<p>An internal platform for deploying interchangeable agentic-AI backends under one safety model.</p>
+<ul>
+<li>Interchangeable agent CLIs — Claude Code CLI, Copilot GPT CLI, and a <strong>custom VS Code
+  &ldquo;Agent Bridge&rdquo; extension</strong> (LLM-broker) — behind a shared allowlist and output-masking layer.</li>
+<li>Secret-aware execution framework; provider-agnostic orchestration so the underlying model/
+  vendor can be swapped without changing the agent contract.</li>
+<li>In real use inside the organization.</li>
+</ul>
+<h3>3. Agentic-OS Sandbox — <strong>[Independent R&amp;D]</strong> · <em>Reference build (self-hosted AI platform)</em></h3>
+<p>A ~60-instance self-hosted platform on a single dual-GPU host — the environment projects 1, 4,
+and 5 run in.</p>
+<ul>
+<li><strong>Incus</strong> (LXD-successor) fleet — ~60 containers/VMs across projects; a 3-master/3-worker
+  k3s cluster; ZFS/Btrfs pools with snapshot rollback; four segmented bridge networks with
+  reverse-proxy-only external exposure (Caddy).</li>
+<li><strong>Dual RTX 3090</strong> GPU passthrough at the container level — PCI-addressed device assignment,
+  runtime NVIDIA library injection (survives host driver upgrades), consumed by an Ollama fleet
+  (~20 models, role-based routing) and an image-gen stack.</li>
+<li><strong>Observability:</strong> Prometheus, Grafana, Loki, Pyroscope, Checkmk, OpenTelemetry collector;
+  a custom token-metrics proxy tapping Ollama traffic for per-model Prometheus metrics.</li>
+<li><strong>Secrets:</strong> HashiCorp Vault — every generated credential, per-service AppRole delivery,
+  Shamir unseal with auto-unseal automation.</li>
+<li><strong>Data:</strong> Postgres, MariaDB, MongoDB, Qdrant (vectors), Redis, Elasticsearch/OpenSearch;
+  Spark 3.5 + MinIO (S3A) + JupyterLab.</li>
+<li><strong>Agent orchestration R&amp;D:</strong> MCP/A2A interoperability services (router, HR-policy, time-off
+  agents); a local Ollama fleet (~20 models) with role-based routing behind a metrics-tapping
+  proxy.</li>
+</ul>
+<h3>4. AI Security Triage (garak-triage) — <strong>[Independent R&amp;D]</strong> · <em>Reference build</em></h3>
+<p>A red-team scanning and triage pipeline for LLM endpoints.</p>
+<ul>
+<li>Runs <strong>garak</strong> probes against model endpoints; guardrail-aware scans (with/without the
+  llm-guard layer in path).</li>
+<li>Triage web UI — finding cards, severity, richer reports, <code>inspect_report</code> deep-dive.</li>
+<li><strong>Remediation library</strong> — maps findings to concrete mitigations.</li>
+<li>Deployable as a service (systemd unit, deploy script, auth&rsquo;d login).</li>
+<li>Paired with an <strong>llm-guard guardrail</strong> (LiteLLM integration) that returns a graceful
+  200-refusal instead of a hard 400 on block.</li>
+</ul>
+<h3>5. LLM Cost Analytics — <strong>[Independent R&amp;D]</strong> · <em>Reference build</em></h3>
+<p>Cost and usage visibility for a self-hosted / mixed LLM fleet.</p>
+<ul>
+<li>Pulls traces from <strong>Langfuse</strong>, applies a per-model <strong>pricing model</strong>, emits <strong>Prometheus</strong>
+  metrics + Grafana; logs to OpenSearch.</li>
+<li>Per-model cost reporting and inventory discovery.</li>
+<li><strong>MLflow model-version comparison</strong> — compare cost/quality across registered versions.</li>
+</ul>
+<h3>6. SOX/ITGC Automation &amp; Copilot Enterprise Governance — <strong>[Work]</strong> · <em>Production</em></h3>
+<ul>
+<li><strong>Playwright-driven RPA agents</strong> for SOX evidence gathering — agents authenticate to
+  enterprise portals, make record-selection decisions, and capture timestamped, masked evidence
+  into the correct control package.</li>
+<li>Built and led the <strong>SOX/ITGC compliance program</strong> — 60+ control activities, PowerShell-
+  automated evidence generation; primary liaison between Infrastructure, Security, and Audit.</li>
+<li>Manage the org&rsquo;s <strong>GitHub Enterprise Copilot</strong> deployment; built an n8n workflow monitoring
+  seat utilization — reclaimed 25 inactive seats (~$475–725/month).</li>
+<li>Led <strong>M&amp;A technology integration for four acquisitions</strong> — M365 tenant consolidation, AD/Entra
+  ID identity integration for ~1,800 users, 400+ mailbox/OneDrive migrations, multi-forest AD
+  trust across 6 forests.</li>
+</ul>
+<hr />
+<h2>Skills — evidenced vs. currently deepening</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Evidenced (projects above; W = work, R = independent R&amp;D)</th>
+<th>Currently deepening</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MLOps</strong></td>
+<td>MLflow registry, champion/challenger, staged promotion + rollback, drift detection, Marquez lineage, LLM-as-judge eval, GenAI datasets</td>
+<td>production scale; Prefect/Dagster pipelines; feature store</td>
+</tr>
+<tr>
+<td><strong>Agentic AI</strong></td>
+<td>provider-agnostic orchestration, VS Code broker extension, MCP/A2A services, RAG (Qdrant), guardrails (llm-guard), garak red-teaming</td>
+<td>LangGraph/CrewAI multi-agent; Agentic RAG; long-term memory</td>
+</tr>
+<tr>
+<td><strong>AI security / governance</strong></td>
+<td>garak triage app, remediation library, guardrail-aware scans, SOX/ITGC rigor applied to AI</td>
+<td>NIST AI RMF / EU AI Act mapping; eval-gated release in CI</td>
+</tr>
+<tr>
+<td><strong>Infra / platform</strong></td>
+<td>Incus fleet, k3s, GPU passthrough, ZFS, segmented networking, Caddy, Vault</td>
+<td>Terraform / IaC at scale; GitOps (ArgoCD/Flux)</td>
+</tr>
+<tr>
+<td><strong>Observability</strong></td>
+<td>Prometheus, Grafana, Loki, Pyroscope, OTel collector, custom metrics proxy, Langfuse</td>
+<td>business-AI metrics + DORA in one pipeline</td>
+</tr>
+<tr>
+<td><strong>Cloud</strong></td>
+<td>AWS SA-Associate + AI Practitioner + Cloud Practitioner; Azure Solutions Architect Expert + Admin Associate; Landing Zones, Well-Architected, multi-account governance (architecture level)</td>
+<td>deep hands-on AWS <strong>and</strong> Azure; SageMaker; cost governance at scale</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>Spark 3.5, MinIO/S3A, Qdrant, Postgres; MLflow on Postgres</td>
+<td>Iceberg/Delta lakehouse + catalog; Ray; large-scale platforms</td>
+</tr>
+<tr>
+<td><strong>Languages</strong></td>
+<td>Python, Bash, PowerShell</td>
+<td>Java / Scala (JVM depth)</td>
+</tr>
+<tr>
+<td><strong>Enterprise delivery</strong></td>
+<td>M&amp;A integration ×4, identity modernization (~1,800 users), SOX program lead, Copilot rollout, lead-by-influence</td>
+<td>people leadership of a team / sub-leaders</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>Certifications &amp; education</h2>
+<ul>
+<li><strong>AWS:</strong> Solutions Architect – Associate (2026) · AI Practitioner (2025) · Cloud Practitioner
+  (2024) · ML – Practitioner</li>
+<li><strong>Microsoft:</strong> Azure Solutions Architect Expert · Azure Administrator Associate · Power
+  Platform Fundamentals (2025) · <strong>AI-300 Azure AI Engineer — in progress</strong></li>
+<li><strong>Post-Grad, AI &amp; ML Business Applications</strong> — Texas McCombs School of Business (2024–2025)</li>
+<li><strong>AAS, Network Administration</strong> — Dallas College</li>
+<li>U.S. patent (2014 Microsoft hackathon project, placed 25th worldwide)</li>
+</ul>
+<hr />
+<h2>Honest scope statement</h2>
+<p>Two separate evidence bases, never blurred:</p>
+<ul>
+<li><strong>Independent R&amp;D (the sandbox)</strong> is a <strong>single-host reference platform</strong>, not a production
+  system with a user base — it demonstrates architecture judgment, integration breadth, and
+  knowledge of failure modes. Projects 1, 3, 4, 5.</li>
+<li><strong>&ldquo;At scale / in production&rdquo; evidence</strong> comes from the <strong>work</strong> at Inform Diagnostics: four
+  M&amp;A integrations, identity modernization for ~1,800 users, a 60+-control SOX program, an
+  org-wide Copilot rollout, and the Script Portal agent platform in real internal use.
+  Projects 2, 6.</li>
+</ul>
+<footer>Built from <code>portfolio.md</code>. Updated 2026-09-03.</footer>
+</div>
+</body>
+</html>
